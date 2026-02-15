@@ -48,6 +48,9 @@ importers:
       eslint-config-next:
         specifier: ^15
         version: 15.5.12(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
+      eslintrc.cjs:
+        specifier: link:@eslint/eslintrc/dist/eslintrc.cjs
+        version: link:@eslint/eslintrc/dist/eslintrc.cjs
       tailwindcss:
         specifier: ^4
         version: 4.1.18
