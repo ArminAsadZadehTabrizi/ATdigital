@@ -27,7 +27,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-balance"
         >
           Moderne Websites für
           <br />
@@ -40,7 +40,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-          className="mx-auto mt-6 max-w-2xl text-lg sm:text-xl text-foreground/60"
+          className="mx-auto mt-6 max-w-2xl text-lg sm:text-xl text-foreground/60 text-balance"
         >
           Stressfrei zum professionellen Webauftritt. Alles aus einer Hand –
           Design, Entwicklung, Hosting & Wartung. Faire Preise, die beide Seiten

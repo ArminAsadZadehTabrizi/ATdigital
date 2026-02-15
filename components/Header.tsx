@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sun, Moon, Menu, X } from "lucide-react";
+import Image from "next/image";
 
 const navLinks = [
   { label: "Portfolio", href: "#portfolio" },
@@ -38,6 +39,14 @@ export default function Header() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2 group">
+            <Image
+              src="/logo.png"
+              alt="AT Digital Logo"
+              width={36}
+              height={36}
+              className="rounded-md"
+              priority
+            />
             <span className="text-xl font-bold tracking-tight">
               <span className="text-primary">AT</span>{" "}
               <span className="text-foreground">Digital</span>
