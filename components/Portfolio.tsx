@@ -16,6 +16,7 @@ import {
   Smartphone,
   ExternalLink,
   X,
+  CheckCircle2,
 } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
@@ -29,6 +30,7 @@ interface Variant {
   icon: React.ReactNode;
   color: string;
   description: string;
+  features: string[];
   url: string;
   preview: string;
 }
@@ -40,6 +42,7 @@ interface BaseProject {
   icon: React.ReactNode;
   color: string;
   description: string;
+  features: string[];
   url: string;
   preview: string;
 }
@@ -62,6 +65,7 @@ interface ModalData {
   icon: React.ReactNode;
   color: string;
   description: string;
+  features: string[];
   url: string;
   /** Present only for multi-variant projects */
   variants?: Variant[];
@@ -82,7 +86,13 @@ const projects: Project[] = [
     icon: <Car size={28} />,
     color: "from-blue-500 to-blue-600",
     description:
-      "Moderne Website für eine Fahrschule mit Online-Anmeldeformular, Kursübersicht und Kontaktmöglichkeiten. Optimiert für mobile Nutzer.",
+      "A highly modern, stress-free web experience targeting a young, digital-native audience with a dynamic glassmorphism design.",
+    features: [
+      "Interactive price calculator",
+      "Guided multi-step registration wizard",
+      "Spotify integration",
+      "Prominent Trust-Bar (Google Reviews)",
+    ],
     url: "https://fahrschulen.vercel.app",
     preview: "/previews/fahrschule.png",
   },
@@ -94,7 +104,13 @@ const projects: Project[] = [
     icon: <Trophy size={28} />,
     color: "from-green-500 to-emerald-600",
     description:
-      "Dynamische Vereins-Website mit Spielplan, Ergebnissen, News und Mitgliedschafts-Informationen. Teamgeist digital erlebbar.",
+      "Traditional values in a modern layout. A central information hub and digital clubhouse for members and newcomers.",
+    features: [
+      "Real-time news ticker for pitch closures",
+      "Intelligent/responsive training schedules",
+      "Department-specific hubs",
+      "Digital membership application",
+    ],
     url: "https://sportverein.vercel.app",
     preview: "/previews/sportverein.png",
   },
@@ -106,7 +122,13 @@ const projects: Project[] = [
     icon: <Sun size={28} />,
     color: "from-yellow-500 to-green-500",
     description:
-      "Informative Website für ein Solarunternehmen mit Produktübersicht, Kostenrechner und Referenzprojekten. Nachhaltig und zukunftsweisend.",
+      "Digital competence for the energy transition. Designed to build trust and simplify complex technical services.",
+    features: [
+      "Interactive 20-year savings calculator",
+      "Dynamic project portfolio with technical specs",
+      "Integrated funding advice (KfW)",
+      "Clear 4-step installation guide",
+    ],
     url: "https://solaranlagen.vercel.app",
     preview: "/previews/solaranlagen.png",
   },
@@ -118,7 +140,13 @@ const projects: Project[] = [
     icon: <Wrench size={28} />,
     color: "from-orange-500 to-orange-600",
     description:
-      "Professionelle Website für einen Handwerksbetrieb mit Leistungsübersicht, Referenzen und Anfrage-Formular. Vertrauenswürdig und seriös.",
+      "A trustworthy, conversion-optimized platform connecting traditional craftsmanship with interactive digital tools.",
+    features: [
+      "Interactive 3-step project calculator",
+      "Real-time zip code checker",
+      "Before/after image gallery with swipe support",
+      "Floating emergency contact buttons",
+    ],
     url: "https://handwerker-rose.vercel.app",
     preview: "/previews/handwerker.png",
   },
@@ -130,7 +158,13 @@ const projects: Project[] = [
     icon: <Pizza size={28} />,
     color: "from-red-500 to-red-600",
     description:
-      "Appetitliche Website für ein Restaurant mit digitaler Speisekarte, Bestellmöglichkeit und Standort-Integration.",
+      "Modern Mediterranean elegance. An emotional and functional digital experience that captures the essence of authentic Italian tradition.",
+    features: [
+      "Interactive menu with zoom effects",
+      "Dynamic nutrition & allergen modal",
+      "Seamless table reservation system",
+      "Full multi-language support (i18n)",
+    ],
     url: "https://pizzaria-pi-seven.vercel.app",
     preview: "/previews/restaurant.png",
   },
@@ -142,7 +176,13 @@ const projects: Project[] = [
     icon: <Beer size={28} />,
     color: "from-teal-500 to-cyan-600",
     description:
-      "Gemütliche Website für eine Kneipe mit Getränkekarte, Events-Kalender und Reservierungsmöglichkeit. Einladend und stimmungsvoll.",
+      "Rustic tradition meets digital excellence. An immersive dark-theme interface with elegant glassmorphism and gold accents.",
+    features: [
+      "Smart accordion-style digital menu",
+      "Integrated reservation pop-up",
+      "Mobile sticky action bar",
+      "Multi-language support",
+    ],
     url: "https://bar-sigma-three.vercel.app",
     preview: "/previews/kneipe.png",
   },
@@ -154,7 +194,12 @@ const projects: Project[] = [
     icon: <Scissors size={28} />,
     color: "from-amber-500 to-amber-600",
     description:
-      "Elegante Website für einen Barbershop mit Online-Terminbuchung, Preisliste und Team-Vorstellung. Vintage-Ästhetik trifft auf moderne Funktionalität.",
+      "Brutalist minimalism in black and white. A precise, character-strong design that puts the craft in focus.",
+    features: [
+      "Dynamic booking system",
+      "Immersive full-screen lightbox gallery",
+      "Cinematic parallax scrolling",
+    ],
     url: "https://friseur-rho.vercel.app",
     preview: "/previews/barber.png",
     variants: [
@@ -165,7 +210,12 @@ const projects: Project[] = [
         icon: <Scissors size={28} />,
         color: "from-amber-500 to-amber-600",
         description:
-          "Elegante Website für einen Barbershop mit Online-Terminbuchung, Preisliste und Team-Vorstellung. Vintage-Ästhetik trifft auf moderne Funktionalität.",
+          "Brutalist minimalism in black and white. A precise, character-strong design that puts the craft in focus.",
+        features: [
+          "Dynamic booking system",
+          "Immersive full-screen lightbox gallery",
+          "Cinematic parallax scrolling",
+        ],
         url: "https://friseur-rho.vercel.app",
         preview: "/previews/barber.png",
       },
@@ -176,7 +226,13 @@ const projects: Project[] = [
         icon: <Paintbrush size={28} />,
         color: "from-purple-500 to-purple-600",
         description:
-          "Stilvolle Portfolio-Website für ein Tattoo-Studio mit Galerie, Artist-Profilen und Buchungssystem. Dunkles, anspruchsvolles Design.",
+          "Industrial aesthetic meets precision artistry. A dark-mode, immersive experience with a raw underground vibe.",
+        features: [
+          "Custom cursor & film-grain effects",
+          "Seamless bilingual switch (DE/EN)",
+          "Interactive portfolio filters",
+          "Animated aftercare guide",
+        ],
         url: "https://tattoo-blond.vercel.app",
         preview: "/previews/tattoo.png",
       },
@@ -437,6 +493,25 @@ function ProjectModal({
             <p className="text-sm text-foreground/60 leading-relaxed mb-6">
               {active.description}
             </p>
+
+            {/* Features list */}
+            {active.features && active.features.length > 0 && (
+              <ul className="space-y-2.5 mb-6">
+                {active.features.map((feature, idx) => (
+                  <li
+                    key={idx}
+                    className="flex items-start gap-2 text-sm text-foreground/70"
+                  >
+                    <CheckCircle2
+                      size={16}
+                      className="shrink-0 text-primary mt-0.5"
+                    />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            )}
+
             <a
               href={active.url}
               target="_blank"
@@ -479,6 +554,7 @@ function PortfolioCard({
         icon: active.icon,
         color: active.color,
         description: active.description,
+        features: active.features,
         url: active.url,
         variants: project.variants,
         initialVariantIdx: variantIdx,
@@ -490,6 +566,7 @@ function PortfolioCard({
         icon: project.icon,
         color: project.color,
         description: project.description,
+        features: project.features,
         url: project.url,
       });
     }
@@ -565,6 +642,16 @@ function PortfolioCard({
 
 export default function Portfolio() {
   const [selected, setSelected] = useState<ModalData | null>(null);
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (selected !== null) {
+      document.body.style.overflow = "hidden";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [selected]);
 
   return (
     <section id="portfolio" className="py-24 sm:py-32">
