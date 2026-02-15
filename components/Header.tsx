@@ -47,9 +47,8 @@ export default function Header() {
               className="rounded-md"
               priority
             />
-            <span className="text-xl font-bold tracking-tight">
-              <span className="text-primary">AT</span>{" "}
-              <span className="text-foreground">Digital</span>
+            <span className="text-xl font-bold tracking-tight text-foreground">
+              Digital
             </span>
           </a>
 
