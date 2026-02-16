@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="border-t border-gray-200 dark:border-gray-800 py-8">
@@ -14,18 +16,18 @@ export default function Footer() {
             </span>
           </div>
           <div className="flex items-center gap-6">
-            <a
+            <Link
               href="/impressum"
               className="text-sm text-foreground/50 hover:text-foreground transition-colors"
             >
               Impressum
-            </a>
-            <a
+            </Link>
+            <Link
               href="/datenschutz"
               className="text-sm text-foreground/50 hover:text-foreground transition-colors"
             >
               Datenschutz
-            </a>
+            </Link>
           </div>
         </div>
       </div>
