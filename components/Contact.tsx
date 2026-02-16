@@ -40,7 +40,7 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="motion-desktop text-center mb-16"
         >
           <span className="inline-block rounded-full border border-primary/30 bg-primary/5 px-4 py-1.5 text-xs font-medium text-primary mb-4">
             Kontakt
@@ -61,7 +61,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
-            className="space-y-6"
+            className="motion-desktop space-y-6"
           >
             <a
               href="https://wa.me/491776124793"
@@ -150,6 +150,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
+            className="motion-desktop"
           >
             <form
               action="https://api.web3forms.com/submit"

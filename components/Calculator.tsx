@@ -48,7 +48,7 @@ export default function Calculator() {
       }
     }
     return total;
-  }, [selectedBase, selectedAddons, basePrice]);
+  }, [selectedAddons, basePrice]);
 
   return (
     <section
@@ -61,7 +61,7 @@ export default function Calculator() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="motion-desktop text-center mb-12"
         >
           <span className="inline-block rounded-full border border-primary/30 bg-primary/5 px-4 py-1.5 text-xs font-medium text-primary mb-4">
             <CalcIcon size={12} className="inline mr-1 -mt-0.5" />
@@ -80,7 +80,7 @@ export default function Calculator() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.5 }}
-          className="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50 p-6 sm:p-8"
+          className="motion-desktop rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50 p-6 sm:p-8"
         >
           {/* Base package selection */}
           <div className="mb-8">

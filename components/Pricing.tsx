@@ -55,7 +55,7 @@ export default function Pricing() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="motion-desktop text-center mb-16"
         >
           <span className="inline-block rounded-full border border-primary/30 bg-primary/5 px-4 py-1.5 text-xs font-medium text-primary mb-4">
             Preise
@@ -75,7 +75,7 @@ export default function Pricing() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="mb-12 mx-auto max-w-2xl rounded-2xl border border-primary/20 bg-primary/5 p-6 text-center"
+          className="motion-desktop mb-12 mx-auto max-w-2xl rounded-2xl border border-primary/20 bg-primary/5 p-6 text-center"
         >
           <p className="text-sm font-semibold text-primary mb-1">
             All-inclusive Monatliches Wartungspaket
@@ -97,7 +97,7 @@ export default function Pricing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
-              className={`relative rounded-2xl border p-6 sm:p-8 ${
+              className={`motion-desktop relative rounded-2xl border p-6 sm:p-8 ${
                 pkg.highlighted
                   ? "border-primary bg-primary/5 dark:bg-primary/5 shadow-lg shadow-primary/10"
                   : "border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50"
@@ -166,7 +166,7 @@ export default function Pricing() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-12 mx-auto max-w-3xl rounded-2xl border border-amber-400/30 bg-amber-50 dark:bg-amber-900/10 p-6 text-center"
+          className="motion-desktop mt-12 mx-auto max-w-3xl rounded-2xl border border-amber-400/30 bg-amber-50 dark:bg-amber-900/10 p-6 text-center"
         >
           <div className="flex items-center justify-center gap-2 mb-2">
             <ShoppingCart size={20} className="text-amber-600 dark:text-amber-400" />

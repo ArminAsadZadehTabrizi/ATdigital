@@ -30,6 +30,21 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ─── Mobile performance fix ───────────────────────────────────────────
+   Framer Motion sets inline opacity:0 / transforms during SSR for
+   entrance animations. On slower mobile connections this produces a
+   "black screen" until JS hydrates. The class below is added to
+   entrance-animation elements and overrides those inline styles on
+   small viewports so content is immediately visible.
+   Desktop (≥768px) is completely unaffected.                           */
+@media (max-width: 767px) {
+  .motion-desktop {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 /* Custom scrollbar */

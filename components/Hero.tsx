@@ -17,6 +17,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
+          className="motion-desktop"
         >
           <span className="inline-block rounded-full border border-primary/30 bg-primary/5 px-4 py-1.5 text-xs font-medium text-primary mb-6">
             Webdesign für lokale Unternehmen
@@ -27,7 +28,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-balance"
+          className="motion-desktop text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-balance"
         >
           Moderne Websites für
           <br />
@@ -40,7 +41,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-          className="mx-auto mt-6 max-w-2xl text-lg sm:text-xl text-foreground/60 text-balance"
+          className="motion-desktop mx-auto mt-6 max-w-2xl text-lg sm:text-xl text-foreground/60 text-balance"
         >
           Stressfrei zum professionellen Webauftritt. Alles aus einer Hand –
           Design, Entwicklung, Hosting & Wartung. Faire Preise, die beide Seiten
@@ -51,7 +52,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
-          className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
+          className="motion-desktop mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <a
             href="#portfolio"
@@ -74,7 +75,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 1 }}
-          className="mt-20"
+          className="motion-desktop mt-20"
         >
           <motion.div
             animate={{ y: [0, 8, 0] }}

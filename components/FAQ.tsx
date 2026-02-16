@@ -90,7 +90,7 @@ export default function FAQ() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="motion-desktop text-center mb-12"
         >
           <span className="inline-block rounded-full border border-primary/30 bg-primary/5 px-4 py-1.5 text-xs font-medium text-primary mb-4">
             FAQ
@@ -108,6 +108,7 @@ export default function FAQ() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.5 }}
+          className="motion-desktop"
         >
           {faqs.map((faq, i) => (
             <FAQItem

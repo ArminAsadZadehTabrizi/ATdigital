@@ -654,7 +654,7 @@ function PortfolioCard({
       transition={{ duration: 0.4, delay: index * 0.05 }}
       whileHover={{ y: -4 }}
       onClick={handleClick}
-      className="group relative cursor-pointer overflow-hidden rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50 text-left transition-shadow hover:shadow-lg hover:shadow-primary/5"
+      className="motion-desktop group relative cursor-pointer overflow-hidden rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50 text-left transition-shadow hover:shadow-lg hover:shadow-primary/5"
     >
       {/* Preview image */}
       <div className="relative aspect-[16/10] w-full overflow-hidden bg-gray-100 dark:bg-gray-800">
@@ -735,7 +735,7 @@ export default function Portfolio() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="motion-desktop text-center mb-16"
         >
           <span className="inline-block rounded-full border border-primary/30 bg-primary/5 px-4 py-1.5 text-xs font-medium text-primary mb-4">
             Portfolio

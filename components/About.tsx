@@ -17,7 +17,7 @@ export default function About() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
-            className="flex justify-center lg:justify-end"
+            className="motion-desktop flex justify-center lg:justify-end"
           >
             <div className="relative">
               <div className="h-72 w-72 sm:h-80 sm:w-80 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center overflow-hidden">
@@ -40,6 +40,7 @@ export default function About() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
+            className="motion-desktop"
           >
             <span className="inline-block rounded-full border border-primary/30 bg-primary/5 px-4 py-1.5 text-xs font-medium text-primary mb-4">
               Über mich
