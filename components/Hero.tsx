@@ -1,5 +1,3 @@
-"use client";
-
 import { ArrowDown, Calculator } from "lucide-react";
 
 export default function Hero() {
@@ -28,8 +26,8 @@ export default function Hero() {
 
       {/* Background gradient */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full bg-primary/10 blur-[120px]" />
-        <div className="absolute bottom-1/4 right-1/4 h-[400px] w-[400px] rounded-full bg-accent/10 blur-[100px]" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[250px] w-[250px] blur-[60px] md:h-[600px] md:w-[600px] md:blur-[120px] rounded-full bg-primary/10" />
+        <div className="absolute bottom-1/4 right-1/4 h-[200px] w-[200px] blur-[50px] md:h-[400px] md:w-[400px] md:blur-[100px] rounded-full bg-accent/10" />
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">

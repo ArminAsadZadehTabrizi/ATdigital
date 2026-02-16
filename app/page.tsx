@@ -1,13 +1,15 @@
+import dynamic from "next/dynamic";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import Portfolio from "@/components/Portfolio";
-import About from "@/components/About";
-import Pricing from "@/components/Pricing";
-import Calculator from "@/components/Calculator";
-import FAQ from "@/components/FAQ";
-import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+
+const Portfolio = dynamic(() => import("@/components/Portfolio"));
+const About = dynamic(() => import("@/components/About"));
+const Pricing = dynamic(() => import("@/components/Pricing"));
+const Calculator = dynamic(() => import("@/components/Calculator"));
+const FAQ = dynamic(() => import("@/components/FAQ"));
+const Contact = dynamic(() => import("@/components/Contact"));
 
 export default function Home() {
   return (
