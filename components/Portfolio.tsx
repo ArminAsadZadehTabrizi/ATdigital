@@ -741,7 +741,7 @@ export default function Portfolio() {
             Portfolio
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
-            Unsere Demo-Projekte
+            Meine Demo-Projekte
           </h2>
           <p className="mt-4 text-foreground/60 max-w-xl mx-auto">
             Klicke auf ein Projekt, um eine Live-Vorschau zu sehen und zwischen
