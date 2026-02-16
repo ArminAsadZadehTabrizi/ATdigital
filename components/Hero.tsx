@@ -1,11 +1,31 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { ArrowDown, Calculator } from "lucide-react";
 
 export default function Hero() {
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden pt-16">
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes heroFadeUp {
+          from { opacity: 0; transform: translateY(30px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes heroFadeIn {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+        }
+        @keyframes heroBounce {
+          0%, 100% { transform: translateY(0); }
+          50%      { transform: translateY(8px); }
+        }
+        .hero-anim-1 { animation: heroFadeUp 0.7s ease-out both; }
+        .hero-anim-2 { animation: heroFadeUp 0.7s ease-out 0.1s both; }
+        .hero-anim-3 { animation: heroFadeUp 0.7s ease-out 0.2s both; }
+        .hero-anim-4 { animation: heroFadeUp 0.7s ease-out 0.35s both; }
+        .hero-anim-5 { animation: heroFadeIn 1s ease-out 1.2s both; }
+        .hero-bounce  { animation: heroBounce 2s ease-in-out infinite; }
+      `}} />
+
       {/* Background gradient */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full bg-primary/10 blur-[120px]" />
@@ -13,47 +33,27 @@ export default function Hero() {
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="motion-desktop"
-        >
+        <div className="hero-anim-1">
           <span className="inline-block rounded-full border border-primary/30 bg-primary/5 px-4 py-1.5 text-xs font-medium text-primary mb-6">
             Webdesign für lokale Unternehmen
           </span>
-        </motion.div>
+        </div>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-          className="motion-desktop text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-balance"
-        >
+        <h1 className="hero-anim-2 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-balance">
           Moderne Websites für
           <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
             dein lokales Business
           </span>
-        </motion.h1>
+        </h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-          className="motion-desktop mx-auto mt-6 max-w-2xl text-lg sm:text-xl text-foreground/60 text-balance"
-        >
+        <p className="hero-anim-3 mx-auto mt-6 max-w-2xl text-lg sm:text-xl text-foreground/60 text-balance">
           Stressfrei zum professionellen Webauftritt. Alles aus einer Hand –
           Design, Entwicklung, Hosting & Wartung. Faire Preise, die beide Seiten
           glücklich machen.
-        </motion.p>
+        </p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
-          className="motion-desktop mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
-        >
+        <div className="hero-anim-4 mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
             href="#portfolio"
             className="group flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 hover:bg-primary-dark transition-all hover:shadow-xl hover:shadow-primary/30"
@@ -68,23 +68,14 @@ export default function Hero() {
             <Calculator size={16} />
             Preis berechnen
           </a>
-        </motion.div>
+        </div>
 
         {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 1 }}
-          className="motion-desktop mt-20"
-        >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="mx-auto h-10 w-6 rounded-full border-2 border-foreground/20 flex items-start justify-center p-1.5"
-          >
-            <motion.div className="h-2 w-1 rounded-full bg-foreground/30" />
-          </motion.div>
-        </motion.div>
+        <div className="hero-anim-5 mt-20">
+          <div className="hero-bounce mx-auto h-10 w-6 rounded-full border-2 border-foreground/20 flex items-start justify-center p-1.5">
+            <div className="h-2 w-1 rounded-full bg-foreground/30" />
+          </div>
+        </div>
       </div>
     </section>
   );
