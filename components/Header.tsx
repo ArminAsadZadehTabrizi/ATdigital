@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sun, Moon, Menu, X } from "lucide-react";
+import { Sun, Moon, Menu, X, Instagram } from "lucide-react";
 import Image from "next/image";
 
 const navLinks = [
@@ -63,6 +63,16 @@ export default function Header() {
                 {link.label}
               </a>
             ))}
+            {/* Instagram Link */}
+            <a
+              href="https://instagram.com/at_digital_"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex h-8 w-8 items-center justify-center rounded-lg text-foreground/70 hover:text-primary transition-colors"
+              aria-label="Instagram"
+            >
+              <Instagram size={18} />
+            </a>
             {/* Dark Mode Toggle */}
             {mounted && (
               <button
@@ -87,6 +97,15 @@ export default function Header() {
 
           {/* Mobile Controls */}
           <div className="flex items-center gap-3 md:hidden">
+            <a
+              href="https://instagram.com/at_digital_"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex h-8 w-8 items-center justify-center rounded-lg text-foreground/70 hover:text-primary transition-colors"
+              aria-label="Instagram"
+            >
+              <Instagram size={18} />
+            </a>
             {mounted && (
               <button
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}

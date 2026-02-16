@@ -2,22 +2,31 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, MessageCircle, Send } from "lucide-react";
+import { Mail, Phone, MapPin, MessageCircle, Send, Instagram } from "lucide-react";
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Placeholder - would integrate with an API
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
-    setFormData({ name: "", email: "", message: "" });
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (res.ok) {
+        setSubmitted(true);
+        form.reset();
+        setTimeout(() => setSubmitted(false), 3000);
+      }
+    } catch {
+      // Fallback: allow native form submission
+      form.submit();
+    }
   };
 
   return (
@@ -55,7 +64,7 @@ export default function Contact() {
             className="space-y-6"
           >
             <a
-              href="https://wa.me/4917XXXXXXXX"
+              href="https://wa.me/491776124793"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-4 rounded-2xl border border-[#25D366]/30 bg-[#25D366]/5 p-5 hover:bg-[#25D366]/10 transition-colors group"
@@ -79,9 +88,12 @@ export default function Contact() {
               </div>
               <div>
                 <p className="font-semibold">E-Mail</p>
-                <p className="text-sm text-foreground/50">
-                  info@atdigital.de
-                </p>
+                <a
+                  href="mailto:Armin.Tabrizi@atdigital-design.de"
+                  className="text-sm text-foreground/50 hover:text-primary transition-colors"
+                >
+                  Armin.Tabrizi@atdigital-design.de
+                </a>
               </div>
             </div>
 
@@ -91,11 +103,33 @@ export default function Contact() {
               </div>
               <div>
                 <p className="font-semibold">Telefon</p>
-                <p className="text-sm text-foreground/50">
-                  +49 (0) 17X XXXXXXX
-                </p>
+                <a
+                  href="tel:+491776124793"
+                  className="text-sm text-foreground/50 hover:text-primary transition-colors"
+                >
+                  0177 612 4793
+                </a>
               </div>
             </div>
+
+            <a
+              href="https://instagram.com/at_digital_"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-4 rounded-2xl border border-[#E1306C]/30 bg-[#E1306C]/5 p-5 hover:bg-[#E1306C]/10 transition-colors group"
+            >
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#F58529] via-[#DD2A7B] to-[#8134AF] text-white">
+                <Instagram size={22} />
+              </div>
+              <div>
+                <p className="font-semibold group-hover:text-[#E1306C] transition-colors">
+                  Instagram
+                </p>
+                <p className="text-sm text-foreground/50">
+                  @at_digital_
+                </p>
+              </div>
+            </a>
 
             <div className="flex items-center gap-4 rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50 p-5">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
@@ -118,9 +152,17 @@ export default function Contact() {
             transition={{ duration: 0.6 }}
           >
             <form
+              action="https://api.web3forms.com/submit"
+              method="POST"
               onSubmit={handleSubmit}
               className="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50 p-6 sm:p-8"
             >
+              <input
+                type="hidden"
+                name="access_key"
+                value="0c504bc4-00e1-4c76-9818-8acb6063a505"
+              />
+
               <div className="space-y-5">
                 <div>
                   <label
@@ -132,10 +174,7 @@ export default function Contact() {
                   <input
                     type="text"
                     id="name"
-                    value={formData.name}
-                    onChange={(e) =>
-                      setFormData({ ...formData, name: e.target.value })
-                    }
+                    name="name"
                     required
                     className="w-full rounded-xl border border-gray-200 dark:border-gray-700 bg-transparent px-4 py-3 text-sm outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
                     placeholder="Dein Name"
@@ -152,10 +191,7 @@ export default function Contact() {
                   <input
                     type="email"
                     id="email"
-                    value={formData.email}
-                    onChange={(e) =>
-                      setFormData({ ...formData, email: e.target.value })
-                    }
+                    name="email"
                     required
                     className="w-full rounded-xl border border-gray-200 dark:border-gray-700 bg-transparent px-4 py-3 text-sm outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
                     placeholder="deine@email.de"
@@ -171,10 +207,7 @@ export default function Contact() {
                   </label>
                   <textarea
                     id="message"
-                    value={formData.message}
-                    onChange={(e) =>
-                      setFormData({ ...formData, message: e.target.value })
-                    }
+                    name="message"
                     required
                     rows={5}
                     className="w-full rounded-xl border border-gray-200 dark:border-gray-700 bg-transparent px-4 py-3 text-sm outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-none"

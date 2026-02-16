@@ -17,6 +17,7 @@ import {
   ExternalLink,
   X,
   CheckCircle2,
+  Star,
 } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
@@ -31,6 +32,7 @@ interface Variant {
   color: string;
   description: string;
   features: string[];
+  highlights: string[];
   url: string;
   preview: string;
 }
@@ -43,6 +45,7 @@ interface BaseProject {
   color: string;
   description: string;
   features: string[];
+  highlights: string[];
   url: string;
   preview: string;
 }
@@ -66,6 +69,7 @@ interface ModalData {
   color: string;
   description: string;
   features: string[];
+  highlights: string[];
   url: string;
   /** Present only for multi-variant projects */
   variants?: Variant[];
@@ -86,12 +90,16 @@ const projects: Project[] = [
     icon: <Car size={28} />,
     color: "from-blue-500 to-blue-600",
     description:
-      "A highly modern, stress-free web experience targeting a young, digital-native audience with a dynamic glassmorphism design.",
+      "Eine hochmoderne, stressfreie Web-Experience, die mit einem dynamischen Glassmorphismus-Design gezielt eine junge Zielgruppe anspricht.",
     features: [
-      "Interactive price calculator",
-      "Guided multi-step registration wizard",
-      "Spotify integration",
-      "Prominent Trust-Bar (Google Reviews)",
+      "Interaktiver Führerschein-Kostenrechner",
+      "Geführter Anmelde-Wizard (Pop-up)",
+      "Dynamischer Theorie-Kalender",
+    ],
+    highlights: [
+      "Spotify-Integration ('Kein WDR 4')",
+      "Auffällige Trust-Bar mit Google-Bewertungen",
+      "Rechtstexte elegant als Modal integriert",
     ],
     url: "https://fahrschulen.vercel.app",
     preview: "/previews/fahrschule.png",
@@ -104,12 +112,16 @@ const projects: Project[] = [
     icon: <Trophy size={28} />,
     color: "from-green-500 to-emerald-600",
     description:
-      "Traditional values in a modern layout. A central information hub and digital clubhouse for members and newcomers.",
+      "Traditionelle Werte in einem modernen Layout. Ein digitales Vereinsheim als zentrale Informationsplattform für Mitglieder und Fans.",
     features: [
-      "Real-time news ticker for pitch closures",
-      "Intelligent/responsive training schedules",
-      "Department-specific hubs",
-      "Digital membership application",
+      "Echtzeit-News-Ticker (z.B. für Platzsperren)",
+      "Intelligente, responsive Trainingspläne",
+      "Digitaler Mitgliedschafts- & Probetrainingsantrag",
+    ],
+    highlights: [
+      "Spezifische Unterseiten je Abteilung",
+      "Transparente Vorstellung des Vorstands",
+      "Integrierte Anfahrtshilfe & Sponsoren-Präsenz",
     ],
     url: "https://sportverein.vercel.app",
     preview: "/previews/sportverein.png",
@@ -122,12 +134,16 @@ const projects: Project[] = [
     icon: <Sun size={28} />,
     color: "from-yellow-500 to-green-500",
     description:
-      "Digital competence for the energy transition. Designed to build trust and simplify complex technical services.",
+      "Digitale Kompetenz für die Energiewende. Konzipiert, um Vertrauen aufzubauen und komplexe technische Leistungen einfach zu erklären.",
     features: [
-      "Interactive 20-year savings calculator",
-      "Dynamic project portfolio with technical specs",
-      "Integrated funding advice (KfW)",
-      "Clear 4-step installation guide",
+      "Interaktiver Solar-Rechner (20 Jahre Ersparnis)",
+      "Dynamisches Portfolio mit technischen Daten",
+      "Strukturierter 4-Schritte Ablauf-Guide",
+    ],
+    highlights: [
+      "Integrierte KfW-Fördermittel-Beratung",
+      "Direkter WhatsApp-Kontaktbutton",
+      "Klare Farbpsychologie (Tech-Blue & Eco-Green)",
     ],
     url: "https://solaranlagen.vercel.app",
     preview: "/previews/solaranlagen.png",
@@ -140,12 +156,16 @@ const projects: Project[] = [
     icon: <Wrench size={28} />,
     color: "from-orange-500 to-orange-600",
     description:
-      "A trustworthy, conversion-optimized platform connecting traditional craftsmanship with interactive digital tools.",
+      "Eine vertrauenserweckende, conversion-starke Plattform, die traditionelles Handwerk mit interaktiven digitalen Tools verbindet.",
     features: [
-      "Interactive 3-step project calculator",
-      "Real-time zip code checker",
-      "Before/after image gallery with swipe support",
-      "Floating emergency contact buttons",
+      "Interaktiver 3-Stufen-Projektkalkulator",
+      "Echtzeit-PLZ-Checker für das Einsatzgebiet",
+      "Vorher/Nachher-Galerie mit Swipe-Funktion",
+    ],
+    highlights: [
+      "Immer sichtbare Notfall-Buttons (WhatsApp/Telefon)",
+      "Smarte Hover-Effekte & fließende Animationen",
+      "Mobile-First Design mit seitlichem Menü",
     ],
     url: "https://handwerker-rose.vercel.app",
     preview: "/previews/handwerker.png",
@@ -158,12 +178,16 @@ const projects: Project[] = [
     icon: <Pizza size={28} />,
     color: "from-red-500 to-red-600",
     description:
-      "Modern Mediterranean elegance. An emotional and functional digital experience that captures the essence of authentic Italian tradition.",
+      "Moderne mediterrane Eleganz. Ein emotionales digitales Erlebnis, das die Essenz authentischer italienischer Tradition einfängt.",
     features: [
-      "Interactive menu with zoom effects",
-      "Dynamic nutrition & allergen modal",
-      "Seamless table reservation system",
-      "Full multi-language support (i18n)",
+      "Interaktive Speisekarte mit Zoom-Effekten",
+      "Detailverliebtes Nährwert- & Allergen-Modal",
+      "Nahtloses Tisch-Reservierungssystem",
+    ],
+    highlights: [
+      "Vollständige Mehrsprachigkeit (i18n)",
+      "Warme, erdige Farbpalette",
+      "Scroll-Animationen & visuelles Storytelling",
     ],
     url: "https://pizzaria-pi-seven.vercel.app",
     preview: "/previews/restaurant.png",
@@ -176,12 +200,16 @@ const projects: Project[] = [
     icon: <Beer size={28} />,
     color: "from-teal-500 to-cyan-600",
     description:
-      "Rustic tradition meets digital excellence. An immersive dark-theme interface with elegant glassmorphism and gold accents.",
+      "Urige Brauhaustradition trifft auf digitale Exzellenz. Ein immersives Dark-Theme mit elegantem Glasmorphismus und goldenen Akzenten.",
     features: [
-      "Smart accordion-style digital menu",
-      "Integrated reservation pop-up",
-      "Mobile sticky action bar",
-      "Multi-language support",
+      "Smarte, digitale Speisekarte (kein PDF!)",
+      "Integriertes Pop-up für Tischreservierungen",
+      "Zweisprachigkeit (DE/EN) ohne Neuladen",
+    ],
+    highlights: [
+      "Mobile Sticky Action Bar für Schnellzugriff",
+      "Sanfter 'Ken Burns'-Zoom im Hintergrund",
+      "Eingebettete Lightbox-Bildergalerie",
     ],
     url: "https://bar-sigma-three.vercel.app",
     preview: "/previews/kneipe.png",
@@ -194,11 +222,16 @@ const projects: Project[] = [
     icon: <Scissors size={28} />,
     color: "from-amber-500 to-amber-600",
     description:
-      "Brutalist minimalism in black and white. A precise, character-strong design that puts the craft in focus.",
+      "Brutalistischer Minimalismus in Schwarz-Weiß. Ein präzises, charakterstarkes Design, das das Handwerk in den Fokus rückt.",
     features: [
-      "Dynamic booking system",
-      "Immersive full-screen lightbox gallery",
-      "Cinematic parallax scrolling",
+      "Intelligentes Termin-Buchungssystem",
+      "Immersive Full-Screen Lightbox-Galerie",
+      "Scroll-Reveal-Technik für Inhalte",
+    ],
+    highlights: [
+      "Kino-Feeling durch Parallax-Scrolling",
+      "Native Lazy Loading für extreme Performance",
+      "Perfektes Mobile-Responsive Layout",
     ],
     url: "https://friseur-rho.vercel.app",
     preview: "/previews/barber.png",
@@ -210,11 +243,16 @@ const projects: Project[] = [
         icon: <Scissors size={28} />,
         color: "from-amber-500 to-amber-600",
         description:
-          "Brutalist minimalism in black and white. A precise, character-strong design that puts the craft in focus.",
+          "Brutalistischer Minimalismus in Schwarz-Weiß. Ein präzises, charakterstarkes Design, das das Handwerk in den Fokus rückt.",
         features: [
-          "Dynamic booking system",
-          "Immersive full-screen lightbox gallery",
-          "Cinematic parallax scrolling",
+          "Intelligentes Termin-Buchungssystem",
+          "Immersive Full-Screen Lightbox-Galerie",
+          "Scroll-Reveal-Technik für Inhalte",
+        ],
+        highlights: [
+          "Kino-Feeling durch Parallax-Scrolling",
+          "Native Lazy Loading für extreme Performance",
+          "Perfektes Mobile-Responsive Layout",
         ],
         url: "https://friseur-rho.vercel.app",
         preview: "/previews/barber.png",
@@ -226,12 +264,16 @@ const projects: Project[] = [
         icon: <Paintbrush size={28} />,
         color: "from-purple-500 to-purple-600",
         description:
-          "Industrial aesthetic meets precision artistry. A dark-mode, immersive experience with a raw underground vibe.",
+          "Industrial Aesthetic meets Precision Artistry. Eine immersive Dark-Mode Experience mit authentischem Underground-Vibe.",
         features: [
-          "Custom cursor & film-grain effects",
-          "Seamless bilingual switch (DE/EN)",
-          "Interactive portfolio filters",
-          "Animated aftercare guide",
+          "Integriertes Buchungssystem nach Artist",
+          "Nahtlose Zweisprachigkeit (DE/EN)",
+          "Animierter Pflege-Guide (Aftercare)",
+        ],
+        highlights: [
+          "Benutzerdefinierter Custom Cursor",
+          "Subtiler Film-Grain-Effekt (Rauschen)",
+          "Interaktive Filter für das Portfolio",
         ],
         url: "https://tattoo-blond.vercel.app",
         preview: "/previews/tattoo.png",
@@ -494,23 +536,53 @@ function ProjectModal({
               {active.description}
             </p>
 
-            {/* Features list */}
-            {active.features && active.features.length > 0 && (
-              <ul className="space-y-2.5 mb-6">
-                {active.features.map((feature, idx) => (
-                  <li
-                    key={idx}
-                    className="flex items-start gap-2 text-sm text-foreground/70"
-                  >
-                    <CheckCircle2
-                      size={16}
-                      className="shrink-0 text-primary mt-0.5"
-                    />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-            )}
+            <div className="space-y-4 mb-6">
+              {/* Features list */}
+              {active.features && active.features.length > 0 && (
+                <div>
+                  <h4 className="text-xs font-semibold uppercase tracking-wider text-foreground/40 mb-2">
+                    Hauptfunktionen:
+                  </h4>
+                  <ul className="space-y-2">
+                    {active.features.map((feature, idx) => (
+                      <li
+                        key={idx}
+                        className="flex items-start gap-2 text-sm text-foreground/70"
+                      >
+                        <CheckCircle2
+                          size={16}
+                          className="shrink-0 text-primary mt-0.5"
+                        />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Highlights list */}
+              {active.highlights && active.highlights.length > 0 && (
+                <div>
+                  <h4 className="text-xs font-semibold uppercase tracking-wider text-foreground/40 mb-2">
+                    Highlights &amp; UX:
+                  </h4>
+                  <ul className="space-y-2">
+                    {active.highlights.map((highlight, idx) => (
+                      <li
+                        key={idx}
+                        className="flex items-start gap-2 text-sm text-foreground/70"
+                      >
+                        <Star
+                          size={16}
+                          className="shrink-0 text-amber-500 mt-0.5"
+                        />
+                        {highlight}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
 
             <a
               href={active.url}
@@ -555,6 +627,7 @@ function PortfolioCard({
         color: active.color,
         description: active.description,
         features: active.features,
+        highlights: active.highlights,
         url: active.url,
         variants: project.variants,
         initialVariantIdx: variantIdx,
@@ -567,6 +640,7 @@ function PortfolioCard({
         color: project.color,
         description: project.description,
         features: project.features,
+        highlights: project.highlights,
         url: project.url,
       });
     }

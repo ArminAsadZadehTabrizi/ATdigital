@@ -1,57 +1,46 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Check, Star, Zap, Crown } from "lucide-react";
+import { Check, Zap, Star, Crown, ShoppingCart } from "lucide-react";
 
 const packages = [
   {
-    name: "Starter",
+    name: "Starter-Paket",
     icon: <Zap size={20} />,
-    price: "499",
-    monthly: "20",
+    price: "399",
     description: "Perfekt für den einfachen Einstieg ins Web.",
     features: [
-      "1-Seiten Website (Onepager)",
-      "Responsives Design",
+      "One-Pager Website",
+      "Modernes, responsives Design",
       "Kontaktformular",
-      "Google Maps Integration",
-      "SSL-Zertifikat",
-      "1 Korrektur-Runde",
+      "Basis SEO (Technisch)",
     ],
     highlighted: false,
   },
   {
-    name: "Profi",
+    name: "Profi-Paket",
     icon: <Star size={20} />,
-    price: "999",
-    monthly: "35",
+    price: "799",
     description: "Die beliebteste Wahl für wachsende Unternehmen.",
     features: [
-      "Bis zu 5 Seiten",
-      "Premium Design & Animationen",
-      "SEO Grundoptimierung",
-      "WhatsApp Integration",
-      "Cookie-Banner (DSGVO)",
-      "3 Korrektur-Runden",
-      "Social Media Einbindung",
+      "Bis zu 5 Unterseiten",
+      "Alles aus Starter",
+      "WhatsApp & Buchungssystem",
+      "Mehrsprachigkeit inklusive",
     ],
     highlighted: true,
   },
   {
-    name: "Premium",
+    name: "King-Paket",
     icon: <Crown size={20} />,
-    price: "1.999",
-    monthly: "50",
+    price: "999",
     description: "Die Komplettlösung für maximale Sichtbarkeit.",
     features: [
-      "Unbegrenzte Seiten",
-      "Individuelles Design",
-      "Buchungssystem / Shop",
-      "Mehrsprachigkeit",
+      "Unbegrenzte Seiten (Fair-Use)",
+      "Alles aus Profi",
+      "Lokales SEO Setup (Google Maps)",
+      "Premium Tracking (Analytics & Pixel)",
       "Blog / News-Bereich",
-      "Google My Business Setup",
-      "Laufende SEO Betreuung",
-      "Priority Support",
     ],
     highlighted: false,
   },
@@ -92,7 +81,7 @@ export default function Pricing() {
             All-inclusive Monatliches Wartungspaket
           </p>
           <p className="text-2xl font-bold">
-            20 – 50 €<span className="text-base font-normal text-foreground/50">/Monat</span>
+            29 – 50 €<span className="text-base font-normal text-foreground/50">/Monat</span>
           </p>
           <p className="text-sm text-foreground/60 mt-2">
             Hosting, SSL, regelmäßige Backups, Updates, technischer Support &
@@ -116,7 +105,7 @@ export default function Pricing() {
             >
               {pkg.highlighted && (
                 <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-4 py-1 text-xs font-semibold text-white">
-                  Beliebteste Wahl
+                  Beliebtestes
                 </span>
               )}
 
@@ -136,11 +125,8 @@ export default function Pricing() {
               </p>
 
               <div className="mb-6">
-                <span className="text-4xl font-bold">{pkg.price}€</span>
+                <span className="text-4xl font-bold">{pkg.price} €</span>
                 <span className="text-foreground/50 ml-1">einmalig</span>
-                <p className="text-sm text-foreground/50 mt-1">
-                  + {pkg.monthly}€/Monat Wartung
-                </p>
               </div>
 
               <ul className="space-y-3 mb-8">
@@ -173,6 +159,25 @@ export default function Pricing() {
             </motion.div>
           ))}
         </div>
+
+        {/* E-Commerce Note */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="mt-12 mx-auto max-w-3xl rounded-2xl border border-amber-400/30 bg-amber-50 dark:bg-amber-900/10 p-6 text-center"
+        >
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <ShoppingCart size={20} className="text-amber-600 dark:text-amber-400" />
+            <p className="text-sm font-semibold text-amber-700 dark:text-amber-400">
+              E-Commerce / Online-Shop
+            </p>
+          </div>
+          <p className="text-sm text-amber-800 dark:text-amber-300/80">
+            E-Commerce / Online-Shop System: Preise auf Anfrage nach individuellem Aufwand.
+          </p>
+        </motion.div>
       </div>
     </section>
   );

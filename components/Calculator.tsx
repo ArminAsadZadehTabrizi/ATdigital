@@ -2,47 +2,53 @@
 
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
-import { Calculator as CalcIcon, Plus, Minus } from "lucide-react";
+import { Calculator as CalcIcon, Check } from "lucide-react";
 
-const pageOptions = [
-  { label: "1 Seite (Onepager)", value: 1, setupPrice: 499, monthly: 20 },
-  { label: "Bis zu 5 Seiten", value: 5, setupPrice: 999, monthly: 35 },
-  { label: "5+ Seiten (individuell)", value: 10, setupPrice: 1999, monthly: 50 },
+const basePackages = [
+  { label: "One-Pager", price: 399 },
+  { label: "Standard (bis 5 Seiten)", price: 799 },
+  { label: "King-Paket (Komplett) - 999 €", price: 999 },
 ];
 
-const extras = [
-  { id: "booking", label: "Buchungssystem", price: 200, monthly: 5 },
-  { id: "whatsapp", label: "WhatsApp Integration", price: 50, monthly: 0 },
-  { id: "multilang", label: "Mehrsprachigkeit", price: 300, monthly: 5 },
-  { id: "seo", label: "SEO Optimierung", price: 150, monthly: 10 },
-  { id: "blog", label: "Blog / News-Bereich", price: 250, monthly: 5 },
-  { id: "shop", label: "Online-Shop Anbindung", price: 400, monthly: 10 },
+interface Addon {
+  id: string;
+  label: string;
+  price: number;
+  includedFrom: number;
+}
+
+const addons: Addon[] = [
+  { id: "whatsapp", label: "WhatsApp Button", price: 50, includedFrom: 799 },
+  { id: "booking", label: "Buchungssystem", price: 100, includedFrom: 799 },
+  { id: "multilang", label: "Mehrsprachigkeit", price: 50, includedFrom: 799 },
+  { id: "seo", label: "Lokales SEO Setup", price: 150, includedFrom: 999 },
+  { id: "tracking", label: "Premium Tracking (Analytics)", price: 100, includedFrom: 999 },
+  { id: "blog", label: "Blog / News Bereich", price: 200, includedFrom: 999 },
 ];
 
 export default function Calculator() {
-  const [selectedPages, setSelectedPages] = useState(0);
-  const [selectedExtras, setSelectedExtras] = useState<string[]>([]);
+  const [selectedBase, setSelectedBase] = useState(0);
+  const [selectedAddons, setSelectedAddons] = useState<string[]>([]);
 
-  const toggleExtra = (id: string) => {
-    setSelectedExtras((prev) =>
+  const basePrice = basePackages[selectedBase].price;
+
+  const toggleAddon = (id: string) => {
+    setSelectedAddons((prev) =>
       prev.includes(id) ? prev.filter((e) => e !== id) : [...prev, id]
     );
   };
 
-  const { setupTotal, monthlyTotal } = useMemo(() => {
-    const base = pageOptions[selectedPages];
-    const extraSetup = extras
-      .filter((e) => selectedExtras.includes(e.id))
-      .reduce((sum, e) => sum + e.price, 0);
-    const extraMonthly = extras
-      .filter((e) => selectedExtras.includes(e.id))
-      .reduce((sum, e) => sum + e.monthly, 0);
-
-    return {
-      setupTotal: base.setupPrice + extraSetup,
-      monthlyTotal: base.monthly + extraMonthly,
-    };
-  }, [selectedPages, selectedExtras]);
+  const setupTotal = useMemo(() => {
+    let total = basePrice;
+    for (const addon of addons) {
+      if (selectedAddons.includes(addon.id)) {
+        if (basePrice < addon.includedFrom) {
+          total += addon.price;
+        }
+      }
+    }
+    return total;
+  }, [selectedBase, selectedAddons, basePrice]);
 
   return (
     <section
@@ -76,70 +82,88 @@ export default function Calculator() {
           transition={{ duration: 0.5 }}
           className="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50 p-6 sm:p-8"
         >
-          {/* Page selection */}
+          {/* Base package selection */}
           <div className="mb-8">
             <label className="block text-sm font-semibold mb-3">
-              Anzahl der Seiten
+              Basis-Paket wählen
             </label>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              {pageOptions.map((option, i) => (
+              {basePackages.map((pkg, i) => (
                 <button
-                  key={option.value}
-                  onClick={() => setSelectedPages(i)}
-                  className={`rounded-xl border px-4 py-3 text-sm font-medium transition-all ${
-                    selectedPages === i
-                      ? "border-primary bg-primary/10 text-primary"
+                  key={pkg.label}
+                  onClick={() => setSelectedBase(i)}
+                  className={`rounded-xl border px-4 py-3 text-left transition-all ${
+                    selectedBase === i
+                      ? "border-primary bg-primary/10 ring-1 ring-primary"
                       : "border-gray-200 dark:border-gray-700 hover:border-primary/40"
                   }`}
                 >
-                  {option.label}
+                  <span className={`block text-sm font-medium ${selectedBase === i ? "text-primary" : ""}`}>
+                    {pkg.label}
+                  </span>
+                  <span className={`block text-xs mt-0.5 ${selectedBase === i ? "text-primary/70" : "text-foreground/50"}`}>
+                    {pkg.price} €
+                  </span>
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Extras */}
+          {/* Add-on features */}
           <div className="mb-8">
             <label className="block text-sm font-semibold mb-3">
               Zusätzliche Features
             </label>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {extras.map((extra) => {
-                const isSelected = selectedExtras.includes(extra.id);
+              {addons.map((addon) => {
+                const isSelected = selectedAddons.includes(addon.id);
+                const isIncluded = basePrice >= addon.includedFrom;
                 return (
                   <button
-                    key={extra.id}
-                    onClick={() => toggleExtra(extra.id)}
+                    key={addon.id}
+                    onClick={() => toggleAddon(addon.id)}
                     className={`flex items-center justify-between rounded-xl border px-4 py-3 text-sm transition-all ${
-                      isSelected
+                      isIncluded
+                        ? "border-green-400/40 bg-green-50 dark:bg-green-900/10 cursor-default"
+                        : isSelected
                         ? "border-primary bg-primary/10"
                         : "border-gray-200 dark:border-gray-700 hover:border-primary/40"
                     }`}
+                    disabled={isIncluded}
                   >
                     <span
                       className={`font-medium ${
-                        isSelected ? "text-primary" : ""
+                        isIncluded
+                          ? "text-green-700 dark:text-green-400"
+                          : isSelected
+                          ? "text-primary"
+                          : ""
                       }`}
                     >
-                      {extra.label}
+                      {addon.label}
                     </span>
                     <div className="flex items-center gap-2">
-                      <span className="text-xs text-foreground/50">
-                        +{extra.price}€
-                      </span>
-                      <div
-                        className={`flex h-5 w-5 items-center justify-center rounded-md transition-colors ${
-                          isSelected
-                            ? "bg-primary text-white"
-                            : "bg-gray-100 dark:bg-gray-800"
-                        }`}
-                      >
-                        {isSelected ? (
-                          <Minus size={12} />
-                        ) : (
-                          <Plus size={12} />
-                        )}
-                      </div>
+                      {isIncluded ? (
+                        <span className="flex items-center gap-1 text-xs font-medium text-green-600 dark:text-green-400">
+                          <Check size={14} />
+                          Inklusive
+                        </span>
+                      ) : (
+                        <>
+                          <span className="text-xs text-foreground/50">
+                            +{addon.price} €
+                          </span>
+                          <div
+                            className={`flex h-5 w-5 items-center justify-center rounded-md transition-colors ${
+                              isSelected
+                                ? "bg-primary text-white"
+                                : "bg-gray-100 dark:bg-gray-800"
+                            }`}
+                          >
+                            {isSelected && <Check size={12} />}
+                          </div>
+                        </>
+                      )}
                     </div>
                   </button>
                 );
@@ -150,7 +174,7 @@ export default function Calculator() {
           {/* Result */}
           <div className="rounded-xl bg-gradient-to-r from-primary/5 to-accent/5 border border-primary/10 p-6">
             <p className="text-sm text-foreground/50 mb-2">
-              Geschätzte Kosten
+              Geschätzte Einrichtungskosten
             </p>
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
               <div>
@@ -160,22 +184,14 @@ export default function Calculator() {
                   animate={{ opacity: 1, y: 0 }}
                   className="text-3xl sm:text-4xl font-bold"
                 >
-                  {setupTotal.toLocaleString("de-DE")}€
+                  {setupTotal.toLocaleString("de-DE")} €
                   <span className="text-base font-normal text-foreground/50 ml-2">
                     einmalig
                   </span>
                 </motion.p>
-                <motion.p
-                  key={monthlyTotal}
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="text-lg text-foreground/60 mt-1"
-                >
-                  + {monthlyTotal}€
-                  <span className="text-sm text-foreground/40 ml-1">
-                    /Monat (Hosting & Wartung)
-                  </span>
-                </motion.p>
+                <p className="text-sm text-foreground/50 mt-2">
+                  Zzgl. 29 € – 50 € / Monat (Hosting, Wartung &amp; Updates im Rundum-Sorglos-Paket)
+                </p>
               </div>
               <a
                 href="#contact"
